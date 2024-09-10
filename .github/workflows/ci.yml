@@ -25,6 +25,10 @@ jobs:
       with:
         image: pandeyaws/alok
         registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        #username: ${{ secrets.DOCKER_USERNAME }}
+        #password: ${{ secrets.DOCKER_PASSWORD }}
+        username: pandeyaws
+        password: Ansible@123
+        
+        
          
