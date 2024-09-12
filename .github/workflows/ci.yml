@@ -7,6 +7,12 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      publish_artifacts:
+        description: 'Publish artifacts'
+        required: false
+        default: 'true'
 jobs:
   build-java:
     runs-on: ubuntu-latest    
@@ -20,7 +26,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build && ls -lrt ./build/libs/
-    - name: Build and Push Docker Image
+    - if: github.event.inputs.publish_artifacts == 'true'
+      name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: pandeyaws/alok
